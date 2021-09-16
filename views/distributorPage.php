@@ -1,5 +1,6 @@
 <?php
 	require_once('../php/session_header.php');
+	require_once('../service/userService.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,14 +32,14 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          <img class="img-responsive img-rounded" src="../assets/image/<?=$_SESSION['img']?>"
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
+            <strong><?=$_SESSION['name']?></strong>
           </span>
-          <span class="user-role">Consumer</span>
+          <span class="user-role"><?=$_SESSION['userType']?></span>
         </div>
       </div>
       <!-- sidebar-header  -->
@@ -102,9 +103,6 @@
                 <li>
                   <a href="#">Bar chart</a>
                 </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
               </ul>
             </div>
           </li>
@@ -167,31 +165,31 @@
           <table class="table">
           <thead>
             <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Email</th>
-              <th>Email</th>
+              <th>NID</th>
+              <th>Phone</th>
+              <th>Image</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
+          <?php
+          $users = getAllUser();
+			    for ($i=0; $i != count($users); $i++) {  ?>
             <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
+              <td><?=$users[$i]['id']?></td>
+              <td><?=$users[$i]['name']?></td>
+              <td><?=$users[$i]['email']?></td>
+              <td><?=$users[$i]['nid']?></td>
+              <td><?=$users[$i]['phone']?></td>
+              <td><img src="../assets/image/<?=$users[$i]['img']?>" alt="image" width="30px"></td>
+              <td>
+			        	<a href="edit.php?id=<?=$users[$i]['id']?>"><i class="fas fa-angle-double-right"></i></a>
+			        </td>
             </tr>
-            <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-              <td>mary@example.com</td>
-              <td>mary@example.com</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>Dooley</td>
-              <td>july@example.com</td>
-              <td>july@example.com</td>
-            </tr>
+          <?php } ?>
           </tbody>
           </table>
         </div>

@@ -34,7 +34,7 @@
 			echo "DB connection error";
 		}
 
-		$sql = "select * from users";
+		$sql = "select * from users where userType='consumer'";
 		$result = mysqli_query($conn, $sql);
 		$users = [];
 

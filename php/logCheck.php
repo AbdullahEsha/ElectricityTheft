@@ -32,6 +32,8 @@
 					$_SESSION['name'] = $name;
 					$_SESSION['email'] = $email;
 					$_SESSION['id'] = $id;
+					$_SESSION['img'] = $img;
+					$_SESSION['userType'] = $userType;
 
 					header('location: ../views/consumerPage.php');
 				} 
@@ -39,6 +41,8 @@
 					$_SESSION['name'] = $name;
 					$_SESSION['email'] = $email;
 					$_SESSION['id'] = $id;
+					$_SESSION['img'] = $img;
+					$_SESSION['userType'] = $userType;
 					
 					header('location: ../views/distributorPage.php');
 				}
