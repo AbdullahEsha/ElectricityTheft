@@ -1,14 +1,14 @@
 <?php
 	require_once('../db/db.php');
 
-	function getById($nid){
+	function getById($id){
 		$conn = dbConnection();
 
 		if(!$conn){
 			echo "DB connection error";
 		}
 
-		$sql = "SELECT * FROM consumer WHERE nid={$nid}";
+		$sql = "SELECT * FROM consumer WHERE id={$id}";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		return $row;
@@ -31,6 +31,101 @@
 
 		return $conDetail;
 	}
+
+	function mainCheck(){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$sql = "select * from main";
+		$result = mysqli_query($conn, $sql);
+		$theft = [];
+
+		while($row = mysqli_fetch_assoc($result)){
+			array_push($theft, $row);
+		}
+
+		return $theft;
+	}
+
+	function getTheftNotification(){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$value = mainCheck();
+
+		if($value){
+			for($i=0; $i != count($value); $i++){
+				$a = $value[$i]['mainCurr'];
+				$b = $value[$i]['lineCurr1'];
+				$c = $value[$i]['consumerCurr1'];
+				$d = $value[$i]['lineCurr2'];
+				$f = ($b - $c);
+	
+				if($a != $b){
+					$sql1 = "insert into theft values('', 'L1','yes', CURRENT_TIMESTAMP )";
+					mysqli_query($conn, $sql1);
+				}
+				else if($d != $f){
+					$sql2 = "insert into theft values('', 'L2','yes', CURRENT_TIMESTAMP )";
+					mysqli_query($conn, $sql2);
+				}
+			}
+		}
+		
+		$sql = "SELECT * FROM theft WHERE status='yes'";
+		$result = mysqli_query($conn, $sql);
+		$theft = [];
+
+		while($row = mysqli_fetch_assoc($result)){
+			array_push($theft, $row);
+		}
+
+		return $theft;
+	}
+
+	
+	function getAllTheft(){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$sql = "select * from theft";
+		$result = mysqli_query($conn, $sql);
+		$theft1 = [];
+
+		while($row = mysqli_fetch_assoc($result)){
+			array_push($theft1, $row);
+		}
+
+		return $theft1;
+	}
+
+	function getAllMain(){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$sql = "select * from main";
+		$result = mysqli_query($conn, $sql);
+		$main = [];
+
+		while($row = mysqli_fetch_assoc($result)){
+			array_push($main, $row);
+		}
+
+		return $main;
+	}
+
 
 	function getAllUser(){
 		$conn = dbConnection();
@@ -78,66 +173,6 @@
 
 		$sql = "insert into users values('', '{$user['name']}','{$user['email']}', '{$user['password']}', 'consumer', '{$user['nid']}', '{$user['img']}', '{$user['phone']}')";
 	
-		if(mysqli_query($conn, $sql)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	
-
-	function update($user){
-		$conn = dbConnection();
-		if(!$conn){
-			echo "DB connection error";
-		}
-
-		$sql = "update users set username='{$user['username']}', password='{$user['password']}', email='{$user['email']}' where id={$user['id']}";
-
-		if(mysqli_query($conn, $sql)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	function updateCom($author){
-		$conn = dbConnection();
-		if(!$conn){
-			echo "DB connection error";
-		}
-		$sql = "UPDATE authors SET name ='{$author['name']}', description='{$author['description']}', contactNumber ='{$author['contactNumber']}', password ='{$author['password']}',  photo ='{$author['photo']}', adminId ={$author['adminId']} WHERE id={$author['id']}";
-		if(mysqli_query($conn, $sql)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	function delete($user){
-		$conn = dbConnection();
-		if(!$conn){
-			echo "DB connection error";
-		}
-
-		$sql = "DELETE FROM `users` WHERE id='{$user['id']}'";
-
-		if(mysqli_query($conn, $sql)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	function deleteAuthor($author){
-		$conn = dbConnection();
-		if(!$conn){
-			echo "DB connection error";
-		}
-
-		$sql = "DELETE FROM authors WHERE id='{$author['id']}'";
-		//echo $sql;
 		if(mysqli_query($conn, $sql)){
 			return true;
 		}else{

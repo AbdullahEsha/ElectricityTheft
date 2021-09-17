@@ -70,16 +70,16 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Distributor Details</a>
+                  <a href="distributorPage.php">Consumers</a>
                 </li>
                 <li>
-                  <a href="#">Bill</a>
+                  <a href="#">Distributors</a>
                 </li>
                 <li>
-                  <a href="#">Line Details</a>
+                  <a href="theftPage.php">Thaft</a>
                 </li>
                 <li>
-                  <a href="#">Forms</a>
+                  <a href="lineDetail.php">Status</a>
                 </li>
               </ul>
             </div>
@@ -161,27 +161,25 @@
           <table class="table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>NID</th>
-              <th>Phone</th>
-              <th>Image</th>
-              <th>Action</th>
+              <th>Distributor Curr</th>
+              <th>Line Current 1</th>
+              <th>Consumer Current 1</th>
+              <th>Line Current 2</th>
+              <th>Consumer Current 2</th>
+              <th>Date Time</th>
             </tr>
           </thead>
           <tbody>
           <?php
-          $users = getAllUser();
-			    for ($i=0; $i != count($users); $i++) {  ?>
+          $main = getAllMain();
+          for ($i=0; $i != count($main); $i++) {  ?>
             <tr>
-              <td><?=$users[$i]['name']?></td>
-              <td><?=$users[$i]['email']?></td>
-              <td><?=$users[$i]['nid']?></td>
-              <td><?=$users[$i]['phone']?></td>
-              <td><img src="../assets/image/<?=$users[$i]['img']?>" alt="image" width="30px"></td>
-              <td>
-			        	<a href="consumerDetail.php?nid=<?=$users[$i]['nid']?>"><i class="fas fa-angle-double-right"></i></a>
-			        </td>
+              <td><?=$main[$i]['mainCurr']?></td>
+              <td><?=$main[$i]['lineCurr1']?></td>
+              <td><?=$main[$i]['consumerCurr1']?></td>
+              <td><?=$main[$i]['lineCurr2']?></td>
+              <td><?=$main[$i]['consumerCurr2']?></td>
+              <td><?=$main[$i]['dateTime']?></td>
             </tr>
           <?php } ?>
           </tbody>

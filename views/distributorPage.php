@@ -76,13 +76,10 @@
                   <a href="#">Distributors</a>
                 </li>
                 <li>
-                  <a href="#">Thaft</a>
+                  <a href="theftPage.php">Thaft</a>
                 </li>
                 <li>
-                  <a href="#">Icons</a>
-                </li>
-                <li>
-                  <a href="#">Forms</a>
+                  <a href="lineDetail.php">Status</a>
                 </li>
               </ul>
             </div>
@@ -114,10 +111,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Google maps</a>
+                  <a href="distributorMap.php">Google maps</a>
                 </li>
                 <li>
-                  <a href="#">Open street map</a>
+                  <a href="#">Location map</a>
                 </li>
               </ul>
             </div>
@@ -144,7 +141,7 @@
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
+      <a href="theftNotification.php">
         <i class="fa fa-bell"></i>
         <span class="badge badge-danger badge-warning notification">3</span>
       </a>
