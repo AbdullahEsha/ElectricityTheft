@@ -1,22 +1,29 @@
 <?php
 	require_once('../php/session_header.php');
 	require_once('../service/userService.php');
+
+  if (isset($_GET['nid'])) {
+		$conDetail = getByConId($_GET['nid']);	
+	}else{
+		header('location: distributorPage.php');
+	}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Electricity Theft</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous">
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="../assets/main.js"></script>
-  <link rel="stylesheet" href="../assets/style.css">
+	<title>Consumer Detail</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../assets/main.js"></script>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
+
 <body>
 	<div class="page-wrapper chiller-theme toggled">
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -165,27 +172,24 @@
           <table class="table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>NID</th>
-              <th>Phone</th>
-              <th>Image</th>
-              <th>Action</th>
+              <th>ID</th>
+              <th>Line Current</th>
+              <th>Current Consume</th>
+              <th>Voltage</th>
+              <th>NId</th>
+              <th>Date Time</th>
             </tr>
           </thead>
           <tbody>
           <?php
-          $users = getAllUser();
-			    for ($i=0; $i != count($users); $i++) {  ?>
+			    for ($i=0; $i != count($conDetail); $i++) {  ?>
             <tr>
-              <td><?=$users[$i]['name']?></td>
-              <td><?=$users[$i]['email']?></td>
-              <td><?=$users[$i]['nid']?></td>
-              <td><?=$users[$i]['phone']?></td>
-              <td><img src="../assets/image/<?=$users[$i]['img']?>" alt="image" width="30px"></td>
-              <td>
-			        	<a href="consumerDetail.php?nid=<?=$users[$i]['nid']?>"><i class="fas fa-angle-double-right"></i></a>
-			        </td>
+              <td><?=$conDetail[$i]['id']?></td>
+              <td><?=$conDetail[$i]['lineCurrent']?></td>
+              <td><?=$conDetail[$i]['currentConsume']?></td>
+              <td><?=$conDetail[$i]['voltage']?></td>
+              <td><?=$conDetail[$i]['nid']?></td>
+              <td><?=$conDetail[$i]['dateTime']?></td>
             </tr>
           <?php } ?>
           </tbody>

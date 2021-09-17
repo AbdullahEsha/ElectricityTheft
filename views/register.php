@@ -30,7 +30,7 @@
             <div>
                 <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
             </div>
-                <h3 class="text-whitesmoke">Sign In Template</h3>
+                <h3 class="text-whitesmoke">BD Electricity</h3>
                 <p class="text-whitesmoke">Sign In</p>
             <div class="container-content">
                 <form class="margin-t" action="../php/regCheck.php" method="post">
@@ -57,7 +57,7 @@
                
                     <a class="text-darkyellow" href="login.php"><small>Login</small></a>
                 </form>
-                <p class="margin-t text-whitesmoke"><small> Your Name &copy; 2018</small> </p>
+                <p class="margin-t text-whitesmoke"><small> Your Name &copy; 2021</small> </p>
             </div>
         </div>
 </body>

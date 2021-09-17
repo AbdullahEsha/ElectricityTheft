@@ -1,30 +1,35 @@
 <?php
 	require_once('../db/db.php');
 
-	function getByID($id){
+	function getById($nid){
 		$conn = dbConnection();
 
 		if(!$conn){
 			echo "DB connection error";
 		}
 
-		$sql = "SELECT * FROM users WHERE id={$id}";
+		$sql = "SELECT * FROM consumer WHERE nid={$nid}";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}
 
-	function getByComID($id){
+	function getByConId($nid){
 		$conn = dbConnection();
 
 		if(!$conn){
 			echo "DB connection error";
 		}
 
-		$sql = "select * from companies where id={$id}";
+		$sql = "SELECT * FROM consumer WHERE nid={$nid}";
 		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-		return $row;
+		$conDetail = [];
+
+		while($row = mysqli_fetch_assoc($result)){
+			array_push($conDetail, $row);
+		}
+
+		return $conDetail;
 	}
 
 	function getAllUser(){
@@ -43,24 +48,6 @@
 		}
 
 		return $users;
-	}
-
-	function getAllAuthor(){
-		$conn = dbConnection();
-
-		if(!$conn){
-			echo "DB connection error";
-		}
-
-		$sql = "select * from authors";
-		$result = mysqli_query($conn, $sql);
-		$authors = [];
-
-		while($row = mysqli_fetch_assoc($result)){
-			array_push($authors, $row);
-		}
-
-		return $authors;
 	}
 
 
