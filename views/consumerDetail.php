@@ -32,15 +32,14 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">BD Electricity</a>
+        <a href="distributorPage.php">BD Electricity</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
       </div>
       <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="../assets/image/<?=$_SESSION['img']?>"
-            alt="User picture">
+        <div class="user-pic"><a href="distributorPage.php"><img class="img-responsive img-rounded" src="../assets/image/<?=$_SESSION['img']?>"
+            alt="User picture"></a>
         </div>
         <div class="user-info">
           <span class="user-name">
@@ -76,14 +75,14 @@
             </a>
             <div class="sidebar-submenu">
               <ul>
-                <li>
-                  <a href="#">General</a>
+              <li>
+                  <a href="distributorPage.php">Consumers</a>
                 </li>
                 <li>
-                  <a href="#">Panels</a>
+                  <a href="#">Distributors</a>
                 </li>
                 <li>
-                  <a href="#">Tables</a>
+                  <a href="#">Thaft</a>
                 </li>
                 <li>
                   <a href="#">Icons</a>
@@ -153,11 +152,10 @@
     <div class="sidebar-footer">
       <a href="#">
         <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
+        <span class="badge badge-danger badge-warning notification">3</span>
       </a>
       <a href="#">
         <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
       </a>
       <a href="../php/logout.php">
         <i class="fa fa-power-off"></i>
