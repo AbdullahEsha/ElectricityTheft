@@ -50,6 +50,20 @@
 		return $theft;
 	}
 
+
+	function verification($l, $s){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$sql = "SELECT * FROM theft where location='$l' and status='$s'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		return $row;
+	}
+
 	function getTheftNotification(){
 		$conn = dbConnection();
 
@@ -66,12 +80,17 @@
 				$c = $value[$i]['consumerCurr1'];
 				$d = $value[$i]['lineCurr2'];
 				$f = ($b - $c);
-	
-				if($a != $b){
+
+				$v = verification('L1', 'yes');
+
+				if($a != $b && $v == ""){
 					$sql1 = "insert into theft values('', 'L1','yes', CURRENT_TIMESTAMP )";
 					mysqli_query($conn, $sql1);
 				}
-				else if($d != $f){
+
+				$v = verification('L2', 'yes');
+
+				if($d != $f && $v == ""){
 					$sql2 = "insert into theft values('', 'L2','yes', CURRENT_TIMESTAMP )";
 					mysqli_query($conn, $sql2);
 				}

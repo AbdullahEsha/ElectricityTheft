@@ -14,7 +14,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO etds (curr1,curr2,time) values(?, ?, ?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($soil_moisture,$solenoid,$humid));
+        $q->execute(array($curr1,$curr2,$time));
         Database::disconnect();
         header("Location: user data.php");
     }

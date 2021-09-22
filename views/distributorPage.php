@@ -76,7 +76,7 @@
                   <a href="#">Distributors</a>
                 </li>
                 <li>
-                  <a href="theftPage.php">Thaft</a>
+                  <a href="theftPage.php">Theft</a>
                 </li>
                 <li>
                   <a href="lineDetail.php">Status</a>
