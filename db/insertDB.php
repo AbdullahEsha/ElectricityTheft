@@ -1,21 +1,20 @@
 <?php
-     
-    require 'db.php';
+    session_start();
+    require_once('../service/userService.php');
  
-    if ( !empty($_POST)) {
+    if ( !empty($_REQUEST)) {
         // keep track post values
-        $curr1 = $_POST['curr1'];
-        $curr2 = $_POST['curr2'];
-        $time = $_POST['time'];
+        $jsonText = $_REQUEST['myJSON'];
+        $decodedText = html_entity_decode($jsonText);
+        $arrayKey = json_decode($decodedText, true);
         
         
         // insert data
-        $pdo = Database::connect();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO etds (curr1,curr2,time) values(?, ?, ?)";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($curr1,$curr2,$time));
-        Database::disconnect();
-        header("Location: user data.php");
+        $status = insertMain($arrayKey);
+        // if($status){
+        //     header('location: ../views/login.php');
+        // }else{
+        //     header('location: ../views/register.php');
+        // }
     }
 ?>

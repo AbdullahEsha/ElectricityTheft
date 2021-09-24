@@ -198,4 +198,19 @@
 			return false;
 		}
 	}
+
+	function insertMain($arrayKey){
+		$conn = dbConnection();
+
+		if(!$conn){
+			echo "DB connection error";
+		}
+
+		$sql = "insert into main values('', '{$arrayKey['mainCurr']}','{$arrayKey['lineCurr1']}', '{$arrayKey['consumerCurr1']}', '{$arrayKey['lineCurr2']}', '{$arrayKey['consumerCurr2']}', '{$arrayKey['dateTime']}')";
+		if(mysqli_query($conn, $sql)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 ?>
